@@ -65,7 +65,7 @@ class JobsController extends Controller
             if ($image) {
                 $imageName = uniqid().date('Y-m-d-H:i:s').".".$image->extension();
                 $destinationPath = public_path('image');
-                $img = Image::make($image->path());
+                // $img = Image::make($image->path());
                 $image->move($destinationPath, $imageName);
                 $createJob['img'] = $imageName;
             }
@@ -124,7 +124,7 @@ class JobsController extends Controller
             if ($image) {
                 $imageName = uniqid().date('Y-m-d-H:i:s').".".$image->extension();
                 $destinationPath = public_path('image');
-                $img = Image::make($image->path());
+                // $img = Image::make($image->path());
                 $image->move($destinationPath, $imageName);
                 $updateJob['img'] = $imageName;
             }
