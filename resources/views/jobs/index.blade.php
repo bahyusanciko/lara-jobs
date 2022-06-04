@@ -71,36 +71,35 @@
 @endsection
 @push('js')
 <script>
-    function showJob(val) {
+     function imgjobs(val) {
         $("#modalImage").modal('show');
         let url = `{{asset('image')}}` + '/' + val;
         $("#modalResult").attr("src", url);
     }
-    $(function () {
-        $("#applyjobs").submit(function (e) {
-            e.preventDefault();
-            $('#preloader').hide()
-            Swal.fire({
-                title: 'Do you want to save the edit?',
-                showDenyButton: true,
-                confirmButtonText: 'Yes',
-                denyButtonText: 'No',
-                customClass: {
-                    actions: 'alert-submit',
-                    confirmButton: 'order-1',
-                    denyButton: 'order-2',
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#preloader').show()
-                    this
-                        .submit(); //declare `$form as a local variable by using var $form = this;
-                } else if (result.isDenied) {
-                    return false
-                }
-            })
-        });
-    });
+    function deletejobs(dataId) {
+        Swal.fire({
+            title: 'Do you want to deleted?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: 'No',
+            customClass: {
+                actions: 'alert-submit',
+                confirmButton: 'order-1',
+                denyButton: 'order-2',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#preloader').show()
+                $('#deletejobs').attr('action', "{{url('jobs')}}/"+dataId).submit();
+            } else if (result.isDenied) {
+                return false
+            }
+        })
+    }
+
+    function editjobs(dataId) {
+        window.location.href = "{{url('jobs/')}}/" + dataId + "/edit";
+    };
 
 </script>
 
